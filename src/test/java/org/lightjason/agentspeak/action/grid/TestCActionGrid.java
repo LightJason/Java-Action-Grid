@@ -22,7 +22,7 @@
  */
 
 
-package org.lightjason.agentspeak.action;
+package org.lightjason.agentspeak.action.grid;
 
 import cern.colt.matrix.tdouble.DoubleMatrix1D;
 import cern.colt.matrix.tdouble.impl.DenseDoubleMatrix1D;
