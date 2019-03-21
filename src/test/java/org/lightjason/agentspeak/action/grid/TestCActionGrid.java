@@ -36,6 +36,7 @@ import org.lightjason.agentspeak.action.grid.routing.CAStarRouting;
 import org.lightjason.agentspeak.action.grid.routing.EDirection;
 import org.lightjason.agentspeak.action.grid.routing.EDistance;
 import org.lightjason.agentspeak.action.grid.routing.ESearchDirection;
+import org.lightjason.agentspeak.common.CPath;
 import org.lightjason.agentspeak.language.CRawTerm;
 import org.lightjason.agentspeak.language.ITerm;
 import org.lightjason.agentspeak.language.execution.IContext;
@@ -305,6 +306,31 @@ public final class TestCActionGrid extends IBaseTest
                 new DenseDoubleMatrix1D( new double[]{2, 4} )
             ).flatMap( i -> Arrays.stream( i.toArray() ).boxed() ).toArray()
         );
+    }
+
+    /**
+     * test names and arguments
+     */
+    @Test
+    public void nameaguments()
+    {
+        Assert.assertEquals( CPath.of( "grid/astar" ), new CAStar().name() );
+        Assert.assertEquals( 1, new CAStar().minimalArgumentNumber() );
+
+        Assert.assertEquals( CPath.of( "grid/densegrid" ), new CDenseGrid().name() );
+        Assert.assertEquals( 1, new CDenseGrid().minimalArgumentNumber() );
+
+        Assert.assertEquals( CPath.of( "grid/isempty" ), new CIsEmpty().name() );
+        Assert.assertEquals( 1, new CIsEmpty().minimalArgumentNumber() );
+
+        Assert.assertEquals( CPath.of( "grid/remove" ), new CRemove().name() );
+        Assert.assertEquals( 1, new CRemove().minimalArgumentNumber() );
+
+        Assert.assertEquals( CPath.of( "grid/set" ), new CSet().name() );
+        Assert.assertEquals( 1, new CSet().minimalArgumentNumber() );
+
+        Assert.assertEquals( CPath.of( "grid/sparsegrid" ), new CSparseGrid().name() );
+        Assert.assertEquals( 1, new CSparseGrid().minimalArgumentNumber() );
     }
 
     /**
