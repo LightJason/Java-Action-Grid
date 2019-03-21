@@ -150,4 +150,31 @@ public final class TestCComponents extends IBaseTest
         );
     }
 
+    /**
+     * test heuristic
+     */
+    @Test
+    public void heuristic()
+    {
+        Assert.assertEquals(
+            18D,
+            EDistance.MANHATTAN.heuristic( new DenseDoubleMatrix1D( new double[]{0, 0} ), new DenseDoubleMatrix1D( new double[]{8, 10} ) )
+        );
+
+        Assert.assertEquals(
+            18D,
+            EDistance.EUCLIDEAN.heuristic( new DenseDoubleMatrix1D( new double[]{0, 0} ), new DenseDoubleMatrix1D( new double[]{8, 10} ) )
+        );
+
+        Assert.assertEquals(
+            18D,
+            EDistance.OCTILE.heuristic( new DenseDoubleMatrix1D( new double[]{0, 0} ), new DenseDoubleMatrix1D( new double[]{8, 10} ) )
+        );
+
+        Assert.assertEquals(
+            18D,
+            EDistance.OCTILE.heuristic( new DenseDoubleMatrix1D( new double[]{0, 0} ), new DenseDoubleMatrix1D( new double[]{8, 10} ) )
+        );
+    }
+
 }
