@@ -87,8 +87,8 @@ public abstract class IBaseRoutingAction extends IBaseAction
             2
         ).flatMap( i -> m_routing.apply( l_arguments.get( 0 ).raw(), i.get( 0 ), i.get( 1 ) ) ).collect( Collectors.toList() );
 
-        // on empty route action fails
-        if ( !l_route.isEmpty() )
+        // at least 2 points / start and goal position must exist
+        if ( l_route.size() > 1 )
         {
             p_return.add( CRawTerm.of( l_route ) );
             return Stream.of();

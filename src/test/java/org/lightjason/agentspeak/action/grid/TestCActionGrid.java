@@ -35,6 +35,7 @@ import org.lightjason.agentspeak.IBaseTest;
 import org.lightjason.agentspeak.action.grid.routing.CAStarRouting;
 import org.lightjason.agentspeak.action.grid.routing.EDirection;
 import org.lightjason.agentspeak.action.grid.routing.EDistance;
+import org.lightjason.agentspeak.action.grid.routing.ESearchDirection;
 import org.lightjason.agentspeak.language.CRawTerm;
 import org.lightjason.agentspeak.language.ITerm;
 import org.lightjason.agentspeak.language.execution.IContext;
@@ -51,6 +52,15 @@ import java.util.stream.Stream;
  */
 public final class TestCActionGrid extends IBaseTest
 {
+    /**
+     * grid
+     */
+    private static final int[][] GRID = new int[][]{{0, 0, 0, 1, 0}, {1, 0, 0, 0, 1}, {0, 0, 1, 0, 0}};
+    /**
+     * empty grid
+     */
+    private static final int[][] EMPTYGRID = new int[][]{{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
+
 
     /**
      * test dense-grid generating
@@ -290,7 +300,7 @@ public final class TestCActionGrid extends IBaseTest
         Assert.assertArrayEquals(
             new Double[]{2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 3.0, 2.0, 3.0, 2.0, 4.0},
             new CAStarRouting().apply(
-                buildgrid( new int[][]{{0, 0, 0, 1, 0}, {1, 0, 0, 0, 1}, {0, 0, 1, 0, 0}} ),
+                buildgrid( GRID ),
                 new DenseDoubleMatrix1D( new double[]{2, 1} ),
                 new DenseDoubleMatrix1D( new double[]{2, 4} )
             ).flatMap( i -> Arrays.stream( i.toArray() ).boxed() ).toArray()
@@ -308,7 +318,7 @@ public final class TestCActionGrid extends IBaseTest
         new CAStar().execute(
             false, IContext.EMPTYPLAN,
             Stream.of(
-                buildgrid( new int[][]{{0, 0, 0, 1, 0}, {1, 0, 0, 0, 1}, {0, 0, 1, 0, 0}} ),
+                buildgrid( GRID ),
                 new DenseDoubleMatrix1D( new double[]{2, 1} ),
                 2, 4
             ).map( CRawTerm::of ).collect( Collectors.toList() ),
@@ -319,6 +329,86 @@ public final class TestCActionGrid extends IBaseTest
         Assert.assertArrayEquals(
             new Double[]{2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 3.0, 2.0, 3.0, 2.0, 4.0},
             l_return.get( 0 ).<List<DoubleMatrix1D>>raw().stream().flatMap( i -> Arrays.stream( i.toArray() ).boxed() ).toArray()
+        );
+    }
+
+    /**
+     * test ignore elements
+     */
+    @Test
+    public void ignoreelement()
+    {
+        final List<ITerm> l_return = new ArrayList<>();
+
+        new CAStar().execute(
+            false, IContext.EMPTYPLAN,
+            Stream.of(
+                buildgrid( GRID ),
+                new DenseDoubleMatrix1D( new double[]{2, 1} ),
+                "hello",
+                2, 4
+            ).map( CRawTerm::of ).collect( Collectors.toList() ),
+            l_return
+        );
+
+        Assert.assertEquals( 1, l_return.size() );
+        Assert.assertArrayEquals(
+            new Double[]{2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 3.0, 2.0, 3.0, 2.0, 4.0},
+            l_return.get( 0 ).<List<DoubleMatrix1D>>raw().stream().flatMap( i -> Arrays.stream( i.toArray() ).boxed() ).toArray()
+        );
+    }
+
+    /**
+     * test no route
+     */
+    @Test
+    public void noroute()
+    {
+        final List<ITerm> l_return = new ArrayList<>();
+
+        Assert.assertFalse(
+            execute(
+                new CAStar(),
+                false,
+                Stream.of(
+                    buildgrid( new int[][]{{0, 0, 1}, {0, 1, 0}, {1, 0, 0}} ),
+                        0, 0,
+                        2, 2
+                ).map( CRawTerm::of ).collect( Collectors.toList() ),
+                l_return
+            )
+        );
+
+        Assert.assertEquals( 0, l_return.size() );
+    }
+
+    /**
+     * test search-direction never
+     */
+    @Test
+    public void searchdirection_never()
+    {
+        Assert.assertArrayEquals(
+            new Double[]{0.0, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 0.0},
+            ESearchDirection.NEVER.apply( buildgrid( EMPTYGRID ), new DenseDoubleMatrix1D( new double[]{1, 1} ), ( i, j ) -> true )
+                                  .flatMapToDouble( i -> Arrays.stream( i.toArray() ) )
+                                  .boxed()
+                                  .toArray()
+        );
+    }
+
+    /**
+     * test search-direction never
+     */
+    @Test
+    public void searchdirection_always()
+    {
+        Assert.assertArrayEquals(
+            new Double[]{0.0, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 0.0, 0.0, 2.0, 0.0, 0.0, 2.0, 2.0, 2.0, 0.0},
+            ESearchDirection.ALWAYS.apply( buildgrid( EMPTYGRID ), new DenseDoubleMatrix1D( new double[]{1, 1} ), ( i, j ) -> true )
+                                  .flatMapToDouble( i -> Arrays.stream( i.toArray() ) )
+                                  .boxed()
+                                  .toArray()
         );
     }
 

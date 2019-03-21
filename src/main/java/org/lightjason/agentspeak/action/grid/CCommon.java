@@ -82,13 +82,13 @@ public final class CCommon
 
 
     /**
-     * returns the distance between to points
+     * returns the euclidian distance between to points
      *
      * @param p_first vector
      * @param p_second vector
      * @return distance
      */
-    public static double distance( @Nonnull final DoubleMatrix1D p_first, @Nonnull final DoubleMatrix1D p_second )
+    public static double euclidandistance( @Nonnull final DoubleMatrix1D p_first, @Nonnull final DoubleMatrix1D p_second )
     {
         return DenseDoubleAlgebra.DEFAULT.norm2(
             new DenseDoubleMatrix1D( p_second.toArray() )
