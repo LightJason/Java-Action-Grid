@@ -27,7 +27,6 @@ import cern.colt.matrix.tdouble.impl.DenseDoubleMatrix1D;
 import org.junit.Assert;
 import org.junit.Test;
 import org.lightjason.agentspeak.IBaseTest;
-import org.lightjason.agentspeak.action.grid.routing.ESearchDirection;
 
 
 /**
