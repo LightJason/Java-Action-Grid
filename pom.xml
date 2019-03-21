@@ -543,43 +543,39 @@
                             <goal>report</goal>
                         </goals>
                     </execution>
-                    <!--
-                     <execution>
-                     <id>jacoco-check</id>
-                     <goals>
-                     <goal>check</goal>
-                     </goals>
-                     <configuration>
-                     <excludes>
-                     <exclude>**/Test*</exclude>
-                     </excludes>
-                     <rules>
-                     <rules>
-                     <rule>
-                     <element>BUNDLE</element>
-                     <limits>
-                     <limit>
-                     <counter>LINE</counter>
-                     <value>COVEREDRATIO</value>
-                     <minimum>65%</minimum>
-                     </limit>
-                     </limits>
-                     </rule>
-                     <rule>
-                     <element>CLASS</element>
-                     <limits>
-                     <limit>
-                     <counter>LINE</counter>
-                     <value>COVEREDRATIO</value>
-                     <minimum>75%</minimum>
-                     </limit>
-                     </limits>
-                     </rule>
-                     </rules>
-                     </rules>
-                     </configuration>
-                     </execution>
-                     -->
+                    <execution>
+                        <id>jacoco-check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <excludes>
+                                <exclude>**/Test*</exclude>
+                            </excludes>
+                            <rules>
+                                <rule>
+                                    <element>BUNDLE</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>LINE</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>85%</minimum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                                <rule>
+                                    <element>CLASS</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>LINE</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>75%</minimum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             
