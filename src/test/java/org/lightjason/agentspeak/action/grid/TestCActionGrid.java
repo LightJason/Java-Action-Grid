@@ -409,10 +409,10 @@ public final class TestCActionGrid extends IBaseTest
     }
 
     /**
-     * test search-direction never
+     * test search-direction
      */
     @Test
-    public void searchdirectionnever()
+    public void searchdirection()
     {
         Assert.assertArrayEquals(
             new Double[]{0.0, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 0.0},
@@ -421,20 +421,29 @@ public final class TestCActionGrid extends IBaseTest
                                   .boxed()
                                   .toArray()
         );
-    }
 
-    /**
-     * test search-direction never
-     */
-    @Test
-    public void searchdirectionalways()
-    {
         Assert.assertArrayEquals(
             new Double[]{0.0, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 0.0, 0.0, 2.0, 0.0, 0.0, 2.0, 2.0, 2.0, 0.0},
             ESearchDirection.ALWAYS.apply( buildgrid( EMPTYGRID ), new DenseDoubleMatrix1D( new double[]{1, 1} ), ( i, j ) -> true )
-                                  .flatMapToDouble( i -> Arrays.stream( i.toArray() ) )
-                                  .boxed()
-                                  .toArray()
+                                   .flatMapToDouble( i -> Arrays.stream( i.toArray() ) )
+                                   .boxed()
+                                   .toArray()
+        );
+
+        Assert.assertArrayEquals(
+            new Double[]{0.0, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 0.0, 0.0, 2.0, 0.0, 0.0, 2.0, 2.0, 2.0, 0.0},
+            ESearchDirection.NOOBSTACLES.apply( buildgrid( EMPTYGRID ), new DenseDoubleMatrix1D( new double[]{1, 1} ), ( i, j ) -> true )
+                                   .flatMapToDouble( i -> Arrays.stream( i.toArray() ) )
+                                   .boxed()
+                                   .toArray()
+        );
+
+        Assert.assertArrayEquals(
+            new Double[]{0.0, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 0.0, 0.0, 2.0, 0.0, 0.0, 2.0, 2.0, 2.0, 0.0},
+            ESearchDirection.ONEOBSTACLE.apply( buildgrid( EMPTYGRID ), new DenseDoubleMatrix1D( new double[]{1, 1} ), ( i, j ) -> true )
+                                        .flatMapToDouble( i -> Arrays.stream( i.toArray() ) )
+                                        .boxed()
+                                        .toArray()
         );
     }
 

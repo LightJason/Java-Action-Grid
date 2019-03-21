@@ -27,6 +27,7 @@ import cern.colt.matrix.tdouble.impl.DenseDoubleMatrix1D;
 import org.junit.Assert;
 import org.junit.Test;
 import org.lightjason.agentspeak.IBaseTest;
+import org.lightjason.agentspeak.action.grid.routing.EDistance;
 
 
 /**
@@ -72,10 +73,10 @@ public final class TestCComponents extends IBaseTest
     }
 
     /**
-     * test distance
+     * test distance calculation
      */
     @Test
-    public void distance()
+    public void distancecalculation()
     {
         Assert.assertEquals(
             0D,
@@ -118,6 +119,34 @@ public final class TestCComponents extends IBaseTest
             new double[]{-1, 0},
             EMovementDirection.RIGHT.apply( new DenseDoubleMatrix1D( new double[]{0, 0} ), new DenseDoubleMatrix1D( new double[]{0, 1} ), 1 ).toArray(),
             0
+        );
+    }
+
+    /**
+     * test distance
+     */
+    @Test
+    public void distance()
+    {
+
+        Assert.assertEquals(
+            18D,
+            EDistance.MANHATTAN.apply( new DenseDoubleMatrix1D( new double[]{0, 0} ), new DenseDoubleMatrix1D( new double[]{8, 10} ) )
+        );
+
+        Assert.assertEquals(
+            12.806248474865697,
+            EDistance.EUCLIDEAN.apply( new DenseDoubleMatrix1D( new double[]{0, 0} ), new DenseDoubleMatrix1D( new double[]{8, 10} ) )
+        );
+
+        Assert.assertEquals(
+            10D,
+            EDistance.CHEBYSHEV.apply( new DenseDoubleMatrix1D( new double[]{0, 0} ), new DenseDoubleMatrix1D( new double[]{8, 10} ) )
+        );
+
+        Assert.assertEquals(
+            13.313708498984761,
+            EDistance.OCTILE.apply( new DenseDoubleMatrix1D( new double[]{0, 0} ), new DenseDoubleMatrix1D( new double[]{8, 10} ) )
         );
     }
 
