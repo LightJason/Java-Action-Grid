@@ -211,8 +211,6 @@
                 <configuration>
                     <targetJdk>1.8</targetJdk>
                     <excludes>
-                        <exclude>**/CASTVisitorAgent.java</exclude>
-                        <exclude>**/CASTVisitorPlanBundle.java</exclude>
                         <exclude>**/generated/*.java</exclude>
                     </excludes>
                     <linkXRef>false</linkXRef>
