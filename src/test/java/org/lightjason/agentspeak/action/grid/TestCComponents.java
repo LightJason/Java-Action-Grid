@@ -26,8 +26,8 @@ package org.lightjason.agentspeak.action.grid;
 import cern.colt.matrix.tdouble.impl.DenseDoubleMatrix1D;
 import org.junit.Assert;
 import org.junit.Test;
-import org.lightjason.agentspeak.IBaseTest;
 import org.lightjason.agentspeak.action.grid.routing.EDistance;
+import org.lightjason.agentspeak.testing.IBaseTest;
 
 
 /**
