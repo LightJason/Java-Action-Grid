@@ -35,14 +35,17 @@ import org.lightjason.agentspeak.action.grid.routing.CAStarRouting;
 import org.lightjason.agentspeak.action.grid.routing.EDirection;
 import org.lightjason.agentspeak.action.grid.routing.EDistance;
 import org.lightjason.agentspeak.action.grid.routing.ESearchDirection;
-import org.lightjason.agentspeak.common.CPath;
 import org.lightjason.agentspeak.language.CRawTerm;
 import org.lightjason.agentspeak.language.ITerm;
 import org.lightjason.agentspeak.language.execution.IContext;
 import org.lightjason.agentspeak.testing.IBaseTest;
 
 import javax.annotation.Nonnull;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -309,27 +312,16 @@ public final class TestCActionGrid extends IBaseTest
     }
 
     /**
-     * test names and arguments
+     * test arguments
      */
     @Test
-    public void nameaguments()
+    public void aguments()
     {
-        Assert.assertEquals( CPath.of( "grid/astar" ), new CAStar().name() );
         Assert.assertEquals( 1, new CAStar().minimalArgumentNumber() );
-
-        Assert.assertEquals( CPath.of( "grid/densegrid" ), new CDenseGrid().name() );
         Assert.assertEquals( 1, new CDenseGrid().minimalArgumentNumber() );
-
-        Assert.assertEquals( CPath.of( "grid/isempty" ), new CIsEmpty().name() );
         Assert.assertEquals( 1, new CIsEmpty().minimalArgumentNumber() );
-
-        Assert.assertEquals( CPath.of( "grid/remove" ), new CRemove().name() );
         Assert.assertEquals( 1, new CRemove().minimalArgumentNumber() );
-
-        Assert.assertEquals( CPath.of( "grid/set" ), new CSet().name() );
         Assert.assertEquals( 1, new CSet().minimalArgumentNumber() );
-
-        Assert.assertEquals( CPath.of( "grid/sparsegrid" ), new CSparseGrid().name() );
         Assert.assertEquals( 1, new CSparseGrid().minimalArgumentNumber() );
     }
 
