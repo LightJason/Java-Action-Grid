@@ -91,7 +91,7 @@ public abstract class IBaseRoutingAction extends IBaseAction
         if ( l_route.size() > 1 )
         {
             p_return.add( CRawTerm.of( l_route ) );
-            return Stream.of();
+            return Stream.empty();
         }
         return p_context.agent().fuzzy().membership().fail();
     }
@@ -110,7 +110,7 @@ public abstract class IBaseRoutingAction extends IBaseAction
         if ( CCommon.isssignableto( p_term, DoubleMatrix1D.class ) )
             return Arrays.stream( p_term.<DoubleMatrix1D>raw().toArray() ).boxed().map( i -> i );
 
-        return Stream.of();
+        return Stream.empty();
     }
 
     /**
@@ -125,6 +125,6 @@ public abstract class IBaseRoutingAction extends IBaseAction
     {
         return p_used.getAndIncrement() % 2 == 0
                ? Stream.of( new DenseDoubleMatrix1D( new double[]{p_value1.doubleValue(), p_value2.doubleValue()} ) )
-               : Stream.of();
+               : Stream.empty();
     }
 }

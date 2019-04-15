@@ -80,6 +80,6 @@ public final class CSparseGrid extends IBaseAction
                    .map( i -> new SparseObjectMatrix2D( i.get( 0 ).<Number>raw().intValue(), i.get( 1 ).<Number>raw().intValue() ) )
                    .forEach( i -> p_return.add( CRawTerm.of( i ) ) );
 
-        return Stream.of();
+        return Stream.empty();
     }
 }

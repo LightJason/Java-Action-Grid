@@ -108,7 +108,7 @@ public abstract class IBaseRouting implements IRouting, Serializable
     {
         return Stream.concat(
             Objects.isNull( p_end.get() )
-            ? Stream.of()
+            ? Stream.empty()
             : constructpath( p_end.get() ),
             Stream.of( p_end.position() )
         );

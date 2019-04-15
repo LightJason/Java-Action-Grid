@@ -158,7 +158,7 @@ public final class CAStarRouting extends IBaseRouting
         }
 
 
-        return Stream.of();
+        return Stream.empty();
     }
 
     /**

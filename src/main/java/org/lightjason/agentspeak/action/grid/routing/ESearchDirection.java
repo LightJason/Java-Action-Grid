@@ -88,10 +88,10 @@ public enum ESearchDirection implements ISearchDirection
 
             return CCommon.streamconcat(
                 Stream.of( l_north, l_east, l_south, l_west ),
-                l_north.getKey() && l_east.getKey() ? Stream.of( walkable( p_grid, p_current, p_walkable, EDirection.NORTHEAST ) ) : Stream.of(),
-                l_north.getKey() && l_west.getKey() ? Stream.of( walkable( p_grid, p_current, p_walkable, EDirection.NORTHWEST ) ) : Stream.of(),
-                l_south.getKey() && l_east.getKey() ? Stream.of( walkable( p_grid, p_current, p_walkable, EDirection.SOUTHEAST ) ) : Stream.of(),
-                l_south.getKey() && l_west.getKey() ? Stream.of( walkable( p_grid, p_current, p_walkable, EDirection.SOUTHWEST ) ) : Stream.of()
+                l_north.getKey() && l_east.getKey() ? Stream.of( walkable( p_grid, p_current, p_walkable, EDirection.NORTHEAST ) ) : Stream.empty(),
+                l_north.getKey() && l_west.getKey() ? Stream.of( walkable( p_grid, p_current, p_walkable, EDirection.NORTHWEST ) ) : Stream.empty(),
+                l_south.getKey() && l_east.getKey() ? Stream.of( walkable( p_grid, p_current, p_walkable, EDirection.SOUTHEAST ) ) : Stream.empty(),
+                l_south.getKey() && l_west.getKey() ? Stream.of( walkable( p_grid, p_current, p_walkable, EDirection.SOUTHWEST ) ) : Stream.empty()
             ).filter( Pair::getKey ).map( Pair::getValue );
         }
 
@@ -110,10 +110,10 @@ public enum ESearchDirection implements ISearchDirection
 
             return CCommon.streamconcat(
                 Stream.of( l_north, l_east, l_south, l_west ),
-                l_north.getKey() || l_east.getKey() ? Stream.of( walkable( p_grid, p_current, p_walkable, EDirection.NORTHEAST ) ) : Stream.of(),
-                l_north.getKey() || l_west.getKey() ? Stream.of( walkable( p_grid, p_current, p_walkable, EDirection.NORTHWEST ) ) : Stream.of(),
-                l_south.getKey() || l_east.getKey() ? Stream.of( walkable( p_grid, p_current, p_walkable, EDirection.SOUTHEAST ) ) : Stream.of(),
-                l_south.getKey() || l_west.getKey() ? Stream.of( walkable( p_grid, p_current, p_walkable, EDirection.SOUTHWEST ) ) : Stream.of()
+                l_north.getKey() || l_east.getKey() ? Stream.of( walkable( p_grid, p_current, p_walkable, EDirection.NORTHEAST ) ) : Stream.empty(),
+                l_north.getKey() || l_west.getKey() ? Stream.of( walkable( p_grid, p_current, p_walkable, EDirection.NORTHWEST ) ) : Stream.empty(),
+                l_south.getKey() || l_east.getKey() ? Stream.of( walkable( p_grid, p_current, p_walkable, EDirection.SOUTHEAST ) ) : Stream.empty(),
+                l_south.getKey() || l_west.getKey() ? Stream.of( walkable( p_grid, p_current, p_walkable, EDirection.SOUTHWEST ) ) : Stream.empty()
             ).filter( Pair::getKey ).map( Pair::getValue );
         }
 

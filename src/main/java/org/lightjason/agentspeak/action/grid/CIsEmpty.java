@@ -86,6 +86,6 @@ public final class CIsEmpty extends IBaseAction
                    .map( Objects::isNull )
                    .forEach( i -> p_return.add( CRawTerm.of( i ) ) );
 
-        return Stream.of();
+        return Stream.empty();
     }
 }

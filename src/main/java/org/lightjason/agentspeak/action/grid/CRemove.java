@@ -118,7 +118,7 @@ public final class CRemove extends IBaseAction
             {
                 p_return.add( CRawTerm.of( l_grid.getQuick( l_row.intValue(), l_col.intValue() ) ) );
                 l_grid.setQuick( l_row.intValue(), l_col.intValue(), null );
-                return Stream.of();
+                return Stream.empty();
             }
 
             return p_context.agent().fuzzy().membership().fail();

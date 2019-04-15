@@ -113,7 +113,7 @@ public final class CSet extends IBaseAction
             if ( !m_avoid.apply( l_grid, l_row, l_col ) )
             {
                 l_grid.setQuick( l_row.intValue(), l_col.intValue(), i.get( 2 ) );
-                return Stream.of();
+                return Stream.empty();
             }
 
             return p_context.agent().fuzzy().membership().fail();
