@@ -44,7 +44,7 @@ import javax.annotation.Nonnull;
  *
  * {@code L = .grid/astar(Grid, 3,3, [1,1, 8,7])}
  *
- * @see https://en.wikipedia.org/wiki/A*_search_algorithm
+ * @see <a href="https://en.wikipedia.org/wiki/A*_search_algorithm"></a>
  */
 public final class CAStar extends IBaseRoutingAction
 {

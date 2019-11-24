@@ -54,7 +54,7 @@ public final class CCommon
      * @param p_alpha angel in radians
      * @return matrix
      *
-     * @see https://en.wikipedia.org/wiki/Rotation_matrix
+     * @see <a href="https://en.wikipedia.org/wiki/Rotation_matrix"></a>
      */
     public static DoubleMatrix2D rotationmatrix2d( final double p_alpha )
     {
