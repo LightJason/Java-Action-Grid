@@ -68,7 +68,7 @@ public enum EMovementDirection implements IMovementDirection
         // calculate the stright line by: current position + l * (goal position - current position)
         // normalize direction and rotate the normalized vector based on the direction
         // calculate the target position based by: current position + speed * rotate( normalize( goal position - current position ) )
-        final DoubleMatrix1D l_view = new DenseDoubleMatrix1D( p_goalposition.toArray() );
+        final DoubleMatrix1D l_view = p_goalposition.copy();
         return DenseDoubleAlgebra.DEFAULT.mult(
             m_rotation,
             l_view
