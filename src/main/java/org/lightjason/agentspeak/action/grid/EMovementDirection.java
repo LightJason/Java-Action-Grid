@@ -27,8 +27,10 @@ import cern.colt.matrix.tdouble.DoubleMatrix1D;
 import cern.colt.matrix.tdouble.DoubleMatrix2D;
 import cern.colt.matrix.tdouble.algo.DenseDoubleAlgebra;
 import cern.jet.math.tdouble.DoubleFunctions;
+import org.checkerframework.checker.index.qual.Positive;
 
 import javax.annotation.Nonnull;
+import java.util.function.Function;
 
 
 /**
@@ -61,21 +63,47 @@ public enum EMovementDirection implements IMovementDirection
         m_rotation = CCommon.rotationmatrix2d( Math.toRadians( p_alpha ) );
     }
 
+    @Nonnull
     @Override
-    public DoubleMatrix1D apply( @Nonnull final DoubleMatrix1D p_position, @Nonnull final DoubleMatrix1D p_goalposition, @Nonnull final Number p_speed )
+    public DoubleMatrix1D position( @Nonnull final DoubleMatrix1D p_position,
+                                    @Nonnull final DoubleMatrix1D p_goalposition )
     {
-        // calculate the stright line by: current position + l * (goal position - current position)
+        return this.position( p_position, p_goalposition, 1D,
+                i -> i.assign( DoubleFunctions.div( Math.sqrt( DenseDoubleAlgebra.DEFAULT.norm2( i ) ) ) ) );
+    }
+
+    @Nonnull
+    @Override
+    public DoubleMatrix1D position( @Nonnull final DoubleMatrix1D p_position,
+                                    @Nonnull final DoubleMatrix1D p_goalposition,
+                                    @Nonnull final Number p_speed )
+    {
+        return this.position( p_position, p_goalposition, p_speed,
+                i -> i.assign( DoubleFunctions.div( Math.sqrt( DenseDoubleAlgebra.DEFAULT.norm2( i ) ) ) ) );
+    }
+
+    @Nonnull
+    @Override
+    public DoubleMatrix1D position( @Nonnull final DoubleMatrix1D p_position,
+                                    @Nonnull final DoubleMatrix1D p_goalposition,
+                                    @Nonnull final Function<DoubleMatrix1D, DoubleMatrix1D> p_norm )
+    {
+        return this.position( p_position, p_goalposition, 1D, p_norm );
+    }
+
+    @Nonnull
+    @Override
+    public DoubleMatrix1D position( @Nonnull final DoubleMatrix1D p_position,
+                                    @Nonnull final DoubleMatrix1D p_goalposition,
+                                    @Nonnull @Positive final Number p_speed,
+                                    @Nonnull final Function<DoubleMatrix1D, DoubleMatrix1D> p_norm )
+    {
+        // calculate the straight line by: current position + l * (goal position - current position)
         // normalize direction and rotate the normalized vector based on the direction
         // calculate the target position based by: current position + speed * rotate( normalize( goal position - current position ) )
-        final DoubleMatrix1D l_view = p_goalposition.copy();
-        return DenseDoubleAlgebra.DEFAULT.mult(
-            m_rotation,
-            l_view
-                .assign( p_position, DoubleFunctions.minus )
-                .assign( DoubleFunctions.div( Math.sqrt( DenseDoubleAlgebra.DEFAULT.norm2( l_view ) ) ) )
-        )
-                                         .assign( DoubleFunctions.mult( p_speed.doubleValue() ) )
-                                         .assign( p_position, DoubleFunctions.plus )
-                                         .assign( Math::round );
+        final DoubleMatrix1D l_result = p_goalposition.copy().assign( p_position, DoubleFunctions.minus );
+        return DenseDoubleAlgebra.DEFAULT.mult( m_rotation, p_norm.apply( l_result ) )
+                .assign( DoubleFunctions.mult( p_speed.doubleValue() ) )
+                .assign( p_position, DoubleFunctions.plus );
     }
 }

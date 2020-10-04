@@ -24,12 +24,63 @@
 package org.lightjason.agentspeak.action.grid;
 
 import cern.colt.matrix.tdouble.DoubleMatrix1D;
-import com.codepoetics.protonpack.functions.TriFunction;
+import org.checkerframework.checker.index.qual.Positive;
+
+import javax.annotation.Nonnull;
+import java.util.function.Function;
 
 
 /**
  * interface of movement direction
  */
-public interface IMovementDirection extends TriFunction<DoubleMatrix1D, DoubleMatrix1D, Number, DoubleMatrix1D>
+public interface IMovementDirection
 {
+
+    /**
+     * calculates new position by current and goal position with the speed length one
+     *
+     * @param p_position current position
+     * @param p_goalposition goal position
+     * @return new position with distance one
+     */
+    @Nonnull
+    DoubleMatrix1D position( @Nonnull final DoubleMatrix1D p_position, @Nonnull final DoubleMatrix1D p_goalposition );
+
+    /**
+     * calculate new position by current position, goal position and speed
+     *
+     * @param p_position position
+     * @param p_goalposition goal position
+     * @param p_speed speed
+     * @return new position
+     */
+    @Nonnull
+    DoubleMatrix1D position( @Nonnull final DoubleMatrix1D p_position, @Nonnull final DoubleMatrix1D p_goalposition,
+                             @Nonnull @Positive final Number p_speed );
+
+    /**
+     * calculates new position by current and goal position with the speed length one
+     *
+     * @param p_position current position
+     * @param p_goalposition goal position
+     * @param p_norm norm function
+     * @return new position with distance one
+     */
+    @Nonnull
+    DoubleMatrix1D position( @Nonnull final DoubleMatrix1D p_position, @Nonnull final DoubleMatrix1D p_goalposition,
+                             @Nonnull final Function<DoubleMatrix1D, DoubleMatrix1D> p_norm );
+
+    /**
+     * calculate new position by current position, goal position and speed
+     *
+     * @param p_position position
+     * @param p_goalposition goal position
+     * @param p_speed speed
+     * @param p_norm norm function
+     * @return new position
+     */
+    @Nonnull
+    DoubleMatrix1D position( @Nonnull final DoubleMatrix1D p_position, @Nonnull final DoubleMatrix1D p_goalposition,
+                             @Nonnull @Positive final Number p_speed,
+                             @Nonnull final Function<DoubleMatrix1D, DoubleMatrix1D> p_norm );
 }

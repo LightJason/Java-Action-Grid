@@ -99,25 +99,41 @@ public final class TestCComponents extends IBaseTest
     {
         Assert.assertArrayEquals(
             new double[]{0, 1},
-            EMovementDirection.FORWARD.apply( new DenseDoubleMatrix1D( new double[]{0, 0} ), new DenseDoubleMatrix1D( new double[]{0, 1} ), 1 ).toArray(),
+            EMovementDirection.FORWARD
+                    .position(
+                            new DenseDoubleMatrix1D( new double[]{0, 0} ),
+                            new DenseDoubleMatrix1D( new double[]{0, 1} )
+                    ).assign( Math::round ).toArray(),
             0
         );
 
         Assert.assertArrayEquals(
             new double[]{0, -1},
-            EMovementDirection.BACKWARD.apply( new DenseDoubleMatrix1D( new double[]{0, 0} ), new DenseDoubleMatrix1D( new double[]{0, 1} ), 1 ).toArray(),
+            EMovementDirection.BACKWARD
+                    .position(
+                            new DenseDoubleMatrix1D( new double[]{0, 0} ),
+                            new DenseDoubleMatrix1D( new double[]{0, 1} )
+                    ).assign( Math::round ).toArray(),
             0
         );
 
         Assert.assertArrayEquals(
             new double[]{1, 0},
-            EMovementDirection.LEFT.apply( new DenseDoubleMatrix1D( new double[]{0, 0} ), new DenseDoubleMatrix1D( new double[]{0, 1} ), 1 ).toArray(),
+            EMovementDirection.LEFT
+                    .position(
+                            new DenseDoubleMatrix1D( new double[]{0, 0} ),
+                            new DenseDoubleMatrix1D( new double[]{0, 1} )
+                    ).assign( Math::round ).toArray(),
             0
         );
 
         Assert.assertArrayEquals(
             new double[]{-1, 0},
-            EMovementDirection.RIGHT.apply( new DenseDoubleMatrix1D( new double[]{0, 0} ), new DenseDoubleMatrix1D( new double[]{0, 1} ), 1 ).toArray(),
+            EMovementDirection.RIGHT
+                    .position(
+                            new DenseDoubleMatrix1D( new double[]{0, 0} ),
+                            new DenseDoubleMatrix1D( new double[]{0, 1} )
+                    ).assign( Math::round ).toArray(),
             0
         );
     }
