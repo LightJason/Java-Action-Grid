@@ -30,7 +30,8 @@ import cern.colt.matrix.tobject.ObjectMatrix2D;
 import cern.colt.matrix.tobject.impl.DenseObjectMatrix2D;
 import cern.colt.matrix.tobject.impl.SparseObjectMatrix2D;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.lightjason.agentspeak.action.grid.routing.CAStarRouting;
 import org.lightjason.agentspeak.action.grid.routing.EDirection;
 import org.lightjason.agentspeak.action.grid.routing.EDistance;
@@ -81,15 +82,15 @@ public final class TestCActionGrid extends IBaseTest
             l_return
         );
 
-        Assert.assertEquals( 2, l_return.size() );
+        Assertions.assertEquals( 2, l_return.size() );
 
-        Assert.assertTrue( l_return.get( 0 ).raw() instanceof DenseObjectMatrix2D );
-        Assert.assertEquals( 2, l_return.get( 0 ).<ObjectMatrix2D>raw().rows() );
-        Assert.assertEquals( 2, l_return.get( 0 ).<ObjectMatrix2D>raw().columns() );
+        Assertions.assertTrue( l_return.get( 0 ).raw() instanceof DenseObjectMatrix2D );
+        Assertions.assertEquals( 2, l_return.get( 0 ).<ObjectMatrix2D>raw().rows() );
+        Assertions.assertEquals( 2, l_return.get( 0 ).<ObjectMatrix2D>raw().columns() );
 
-        Assert.assertTrue( l_return.get( 1 ).raw() instanceof DenseObjectMatrix2D );
-        Assert.assertEquals( 3, l_return.get( 1 ).<ObjectMatrix2D>raw().rows() );
-        Assert.assertEquals( 5, l_return.get( 1 ).<ObjectMatrix2D>raw().columns() );
+        Assertions.assertTrue( l_return.get( 1 ).raw() instanceof DenseObjectMatrix2D );
+        Assertions.assertEquals( 3, l_return.get( 1 ).<ObjectMatrix2D>raw().rows() );
+        Assertions.assertEquals( 5, l_return.get( 1 ).<ObjectMatrix2D>raw().columns() );
     }
 
     /**
@@ -107,15 +108,15 @@ public final class TestCActionGrid extends IBaseTest
             l_return
         );
 
-        Assert.assertEquals( 2, l_return.size() );
+        Assertions.assertEquals( 2, l_return.size() );
 
-        Assert.assertTrue( l_return.get( 0 ).raw() instanceof SparseObjectMatrix2D );
-        Assert.assertEquals( 4, l_return.get( 0 ).<ObjectMatrix2D>raw().rows() );
-        Assert.assertEquals( 7, l_return.get( 0 ).<ObjectMatrix2D>raw().columns() );
+        Assertions.assertTrue( l_return.get( 0 ).raw() instanceof SparseObjectMatrix2D );
+        Assertions.assertEquals( 4, l_return.get( 0 ).<ObjectMatrix2D>raw().rows() );
+        Assertions.assertEquals( 7, l_return.get( 0 ).<ObjectMatrix2D>raw().columns() );
 
-        Assert.assertTrue( l_return.get( 1 ).raw() instanceof SparseObjectMatrix2D );
-        Assert.assertEquals( 1, l_return.get( 1 ).<ObjectMatrix2D>raw().rows() );
-        Assert.assertEquals( 1, l_return.get( 1 ).<ObjectMatrix2D>raw().columns() );
+        Assertions.assertTrue( l_return.get( 1 ).raw() instanceof SparseObjectMatrix2D );
+        Assertions.assertEquals( 1, l_return.get( 1 ).<ObjectMatrix2D>raw().rows() );
+        Assertions.assertEquals( 1, l_return.get( 1 ).<ObjectMatrix2D>raw().columns() );
     }
 
     /**
@@ -135,9 +136,9 @@ public final class TestCActionGrid extends IBaseTest
             l_return
         );
 
-        Assert.assertEquals( 2, l_return.size() );
-        Assert.assertTrue( l_return.get( 0 ).raw() );
-        Assert.assertFalse( l_return.get( 1 ).raw() );
+        Assertions.assertEquals( 2, l_return.size() );
+        Assertions.assertTrue( () -> l_return.get( 0 ).raw() );
+        Assertions.assertFalse( () -> l_return.get( 1 ).raw() );
     }
 
     /**
@@ -155,8 +156,8 @@ public final class TestCActionGrid extends IBaseTest
             Collections.emptyList()
         );
 
-        Assert.assertTrue( Objects.nonNull( l_grid.getQuick( 2, 1 ) ) );
-        Assert.assertTrue( Objects.nonNull( l_grid.getQuick( 0, 0 ) ) );
+        Assertions.assertTrue( Objects.nonNull( l_grid.getQuick( 2, 1 ) ) );
+        Assertions.assertTrue( Objects.nonNull( l_grid.getQuick( 0, 0 ) ) );
     }
 
     /**
@@ -174,8 +175,8 @@ public final class TestCActionGrid extends IBaseTest
             Collections.emptyList()
         );
 
-        Assert.assertTrue( Objects.nonNull( l_grid.getQuick( 1, 2 ) ) );
-        Assert.assertFalse( Objects.nonNull( l_grid.getQuick( 1, 1 ) ) );
+        Assertions.assertTrue( Objects.nonNull( l_grid.getQuick( 1, 2 ) ) );
+        Assertions.assertFalse( Objects.nonNull( l_grid.getQuick( 1, 1 ) ) );
     }
 
     /**
@@ -195,10 +196,10 @@ public final class TestCActionGrid extends IBaseTest
             l_return
         );
 
-        Assert.assertEquals( 1, l_return.size() );
-        Assert.assertTrue( Objects.isNull( l_grid.getQuick( 1, 1 ) ) );
-        Assert.assertTrue( l_return.get( 0 ).raw() instanceof Number );
-        Assert.assertEquals( 999, l_return.get( 0 ).<Number>raw() );
+        Assertions.assertEquals( 1, l_return.size() );
+        Assertions.assertTrue( Objects.isNull( l_grid.getQuick( 1, 1 ) ) );
+        Assertions.assertTrue( l_return.get( 0 ).raw() instanceof Number );
+        Assertions.assertEquals( 999, l_return.get( 0 ).<Number>raw() );
     }
 
     /**
@@ -218,9 +219,9 @@ public final class TestCActionGrid extends IBaseTest
             l_return
         );
 
-        Assert.assertEquals( 1, l_return.size() );
-        Assert.assertTrue( Objects.nonNull( l_grid.getQuick( 1, 1 ) ) );
-        Assert.assertTrue( Objects.isNull( l_return.get( 0 ).raw() ) );
+        Assertions.assertEquals( 1, l_return.size() );
+        Assertions.assertTrue( Objects.nonNull( l_grid.getQuick( 1, 1 ) ) );
+        Assertions.assertTrue( Objects.isNull( l_return.get( 0 ).raw() ) );
     }
 
     /**
@@ -231,49 +232,49 @@ public final class TestCActionGrid extends IBaseTest
     {
         final DoubleMatrix1D l_position = new DenseDoubleMatrix1D( 2 );
 
-        Assert.assertArrayEquals(
+        Assertions.assertArrayEquals(
             EDirection.NORTH.apply( l_position ).toArray(),
             new double[]{-1, 0},
             0
         );
 
-        Assert.assertArrayEquals(
+        Assertions.assertArrayEquals(
             EDirection.EAST.apply( l_position ).toArray(),
             new double[]{0, 1},
             0
         );
 
-        Assert.assertArrayEquals(
+        Assertions.assertArrayEquals(
             EDirection.SOUTH.apply( l_position ).toArray(),
             new double[]{1, 0},
             0
         );
 
-        Assert.assertArrayEquals(
+        Assertions.assertArrayEquals(
             EDirection.WEST.apply( l_position ).toArray(),
             new double[]{0, -1},
             0
         );
 
-        Assert.assertArrayEquals(
+        Assertions.assertArrayEquals(
             EDirection.NORTHEAST.apply( l_position ).toArray(),
             new double[]{-1, 1},
             0
         );
 
-        Assert.assertArrayEquals(
+        Assertions.assertArrayEquals(
             EDirection.NORTHWEST.apply( l_position ).toArray(),
             new double[]{-1, -1},
             0
         );
 
-        Assert.assertArrayEquals(
+        Assertions.assertArrayEquals(
             EDirection.SOUTHEAST.apply( l_position ).toArray(),
             new double[]{1, 1},
             0
         );
 
-        Assert.assertArrayEquals(
+        Assertions.assertArrayEquals(
             EDirection.SOUTHWEST.apply( l_position ).toArray(),
             new double[]{1, -1},
             0
@@ -289,10 +290,10 @@ public final class TestCActionGrid extends IBaseTest
         final DoubleMatrix1D l_value1 = new DenseDoubleMatrix1D( new double[]{3, 4} );
         final DoubleMatrix1D l_value2 = new DenseDoubleMatrix1D( new double[]{7, 2} );
 
-        Assert.assertEquals( 6D, EDistance.MANHATTAN.apply( l_value1, l_value2 ) );
-        Assert.assertEquals( 4.47213595499958, EDistance.EUCLIDEAN.apply( l_value1, l_value2 ) );
-        Assert.assertEquals( 4D, EDistance.CHEBYSHEV.apply( l_value1, l_value2 ) );
-        Assert.assertEquals( 4.82842712474619, EDistance.OCTILE.apply( l_value1, l_value2 ) );
+        Assertions.assertEquals( 6D, EDistance.MANHATTAN.apply( l_value1, l_value2 ) );
+        Assertions.assertEquals( 4.47213595499958, EDistance.EUCLIDEAN.apply( l_value1, l_value2 ) );
+        Assertions.assertEquals( 4D, EDistance.CHEBYSHEV.apply( l_value1, l_value2 ) );
+        Assertions.assertEquals( 4.82842712474619, EDistance.OCTILE.apply( l_value1, l_value2 ) );
     }
 
     /**
@@ -301,7 +302,7 @@ public final class TestCActionGrid extends IBaseTest
     @Test
     public void astar()
     {
-        Assert.assertArrayEquals(
+        Assertions.assertArrayEquals(
             new Double[]{2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 3.0, 2.0, 3.0, 2.0, 4.0},
             new CAStarRouting().apply(
                 buildgrid( GRID ),
@@ -317,12 +318,12 @@ public final class TestCActionGrid extends IBaseTest
     @Test
     public void aguments()
     {
-        Assert.assertEquals( 1, new CAStar().minimalArgumentNumber() );
-        Assert.assertEquals( 1, new CDenseGrid().minimalArgumentNumber() );
-        Assert.assertEquals( 1, new CIsEmpty().minimalArgumentNumber() );
-        Assert.assertEquals( 1, new CRemove().minimalArgumentNumber() );
-        Assert.assertEquals( 1, new CSet().minimalArgumentNumber() );
-        Assert.assertEquals( 1, new CSparseGrid().minimalArgumentNumber() );
+        Assertions.assertEquals( 1, new CAStar().minimalArgumentNumber() );
+        Assertions.assertEquals( 1, new CDenseGrid().minimalArgumentNumber() );
+        Assertions.assertEquals( 1, new CIsEmpty().minimalArgumentNumber() );
+        Assertions.assertEquals( 1, new CRemove().minimalArgumentNumber() );
+        Assertions.assertEquals( 1, new CSet().minimalArgumentNumber() );
+        Assertions.assertEquals( 1, new CSparseGrid().minimalArgumentNumber() );
     }
 
     /**
@@ -343,8 +344,8 @@ public final class TestCActionGrid extends IBaseTest
             l_return
         );
 
-        Assert.assertEquals( 1, l_return.size() );
-        Assert.assertArrayEquals(
+        Assertions.assertEquals( 1, l_return.size() );
+        Assertions.assertArrayEquals(
             new Double[]{2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 3.0, 2.0, 3.0, 2.0, 4.0},
             l_return.get( 0 ).<List<DoubleMatrix1D>>raw().stream().flatMap( i -> Arrays.stream( i.toArray() ).boxed() ).toArray()
         );
@@ -369,8 +370,8 @@ public final class TestCActionGrid extends IBaseTest
             l_return
         );
 
-        Assert.assertEquals( 1, l_return.size() );
-        Assert.assertArrayEquals(
+        Assertions.assertEquals( 1, l_return.size() );
+        Assertions.assertArrayEquals(
             new Double[]{2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 3.0, 2.0, 3.0, 2.0, 4.0},
             l_return.get( 0 ).<List<DoubleMatrix1D>>raw().stream().flatMap( i -> Arrays.stream( i.toArray() ).boxed() ).toArray()
         );
@@ -397,7 +398,7 @@ public final class TestCActionGrid extends IBaseTest
             )
         );
 
-        Assert.assertEquals( 0, l_return.size() );
+        Assertions.assertEquals( 0, l_return.size() );
     }
 
     /**
@@ -406,7 +407,7 @@ public final class TestCActionGrid extends IBaseTest
     @Test
     public void searchdirection()
     {
-        Assert.assertArrayEquals(
+        Assertions.assertArrayEquals(
             new Double[]{0.0, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 0.0},
             ESearchDirection.NEVER.apply( buildgrid( EMPTYGRID ), new DenseDoubleMatrix1D( new double[]{1, 1} ), ( i, j ) -> true )
                                   .flatMapToDouble( i -> Arrays.stream( i.toArray() ) )
@@ -414,7 +415,7 @@ public final class TestCActionGrid extends IBaseTest
                                   .toArray()
         );
 
-        Assert.assertArrayEquals(
+        Assertions.assertArrayEquals(
             new Double[]{0.0, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 0.0, 0.0, 2.0, 0.0, 0.0, 2.0, 2.0, 2.0, 0.0},
             ESearchDirection.ALWAYS.apply( buildgrid( EMPTYGRID ), new DenseDoubleMatrix1D( new double[]{1, 1} ), ( i, j ) -> true )
                                    .flatMapToDouble( i -> Arrays.stream( i.toArray() ) )
@@ -422,7 +423,7 @@ public final class TestCActionGrid extends IBaseTest
                                    .toArray()
         );
 
-        Assert.assertArrayEquals(
+        Assertions.assertArrayEquals(
             new Double[]{0.0, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 0.0, 0.0, 2.0, 0.0, 0.0, 2.0, 2.0, 2.0, 0.0},
             ESearchDirection.NOOBSTACLES.apply( buildgrid( EMPTYGRID ), new DenseDoubleMatrix1D( new double[]{1, 1} ), ( i, j ) -> true )
                                    .flatMapToDouble( i -> Arrays.stream( i.toArray() ) )
@@ -430,7 +431,7 @@ public final class TestCActionGrid extends IBaseTest
                                    .toArray()
         );
 
-        Assert.assertArrayEquals(
+        Assertions.assertArrayEquals(
             new Double[]{0.0, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 0.0, 0.0, 2.0, 0.0, 0.0, 2.0, 2.0, 2.0, 0.0},
             ESearchDirection.ONEOBSTACLE.apply( buildgrid( EMPTYGRID ), new DenseDoubleMatrix1D( new double[]{1, 1} ), ( i, j ) -> true )
                                         .flatMapToDouble( i -> Arrays.stream( i.toArray() ) )

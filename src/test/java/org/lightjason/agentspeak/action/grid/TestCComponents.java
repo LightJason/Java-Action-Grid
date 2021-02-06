@@ -24,8 +24,8 @@
 package org.lightjason.agentspeak.action.grid;
 
 import cern.colt.matrix.tdouble.impl.DenseDoubleMatrix1D;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.lightjason.agentspeak.action.grid.routing.EDistance;
 import org.lightjason.agentspeak.testing.IBaseTest;
 
@@ -42,13 +42,13 @@ public final class TestCComponents extends IBaseTest
     @Test
     public void angle()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
             90D,
             Math.toDegrees( CCommon.angle( new DenseDoubleMatrix1D( new double[]{0, 1} ), new DenseDoubleMatrix1D( new double[]{1, 0} ) ).getKey() ),
             0
         );
 
-        Assert.assertFalse(
+        Assertions.assertFalse(
             CCommon.angle( new DenseDoubleMatrix1D( new double[]{0, 0} ), new DenseDoubleMatrix1D( new double[]{0, 0} ) ).getValue()
         );
     }
@@ -59,13 +59,13 @@ public final class TestCComponents extends IBaseTest
     @Test
     public void rotation()
     {
-        Assert.assertArrayEquals(
+        Assertions.assertArrayEquals(
             new double[]{0, -1, 1, 0},
             CCommon.rotationmatrix2d( Math.toRadians( 90 ) ).vectorize().toArray(),
             0.0001
         );
 
-        Assert.assertArrayEquals(
+        Assertions.assertArrayEquals(
             new double[]{0, 1, -1, 0},
             CCommon.rotationmatrix2d( Math.toRadians( 270 ) ).vectorize().toArray(),
             0.0001
@@ -78,13 +78,13 @@ public final class TestCComponents extends IBaseTest
     @Test
     public void distancecalculation()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
             0D,
             CCommon.euclidandistance( new DenseDoubleMatrix1D( new double[]{0, 0} ), new DenseDoubleMatrix1D( new double[]{0, 0} ) ),
             0
         );
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
             2.8284271247461903,
             CCommon.euclidandistance( new DenseDoubleMatrix1D( new double[]{2, 0} ), new DenseDoubleMatrix1D( new double[]{0, 2} ) ),
             0.00001
@@ -97,7 +97,7 @@ public final class TestCComponents extends IBaseTest
     @Test
     public void movement()
     {
-        Assert.assertArrayEquals(
+        Assertions.assertArrayEquals(
             new double[]{0, 1},
             EMovementDirection.FORWARD
                     .position(
@@ -107,7 +107,7 @@ public final class TestCComponents extends IBaseTest
             0
         );
 
-        Assert.assertArrayEquals(
+        Assertions.assertArrayEquals(
             new double[]{0, -1},
             EMovementDirection.BACKWARD
                     .position(
@@ -117,7 +117,7 @@ public final class TestCComponents extends IBaseTest
             0
         );
 
-        Assert.assertArrayEquals(
+        Assertions.assertArrayEquals(
             new double[]{1, 0},
             EMovementDirection.LEFT
                     .position(
@@ -127,7 +127,7 @@ public final class TestCComponents extends IBaseTest
             0
         );
 
-        Assert.assertArrayEquals(
+        Assertions.assertArrayEquals(
             new double[]{-1, 0},
             EMovementDirection.RIGHT
                     .position(
@@ -145,22 +145,22 @@ public final class TestCComponents extends IBaseTest
     public void distance()
     {
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
             18D,
             EDistance.MANHATTAN.apply( new DenseDoubleMatrix1D( new double[]{0, 0} ), new DenseDoubleMatrix1D( new double[]{8, 10} ) )
         );
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
             12.806248474865697,
             EDistance.EUCLIDEAN.apply( new DenseDoubleMatrix1D( new double[]{0, 0} ), new DenseDoubleMatrix1D( new double[]{8, 10} ) )
         );
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
             10D,
             EDistance.CHEBYSHEV.apply( new DenseDoubleMatrix1D( new double[]{0, 0} ), new DenseDoubleMatrix1D( new double[]{8, 10} ) )
         );
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
             13.313708498984761,
             EDistance.OCTILE.apply( new DenseDoubleMatrix1D( new double[]{0, 0} ), new DenseDoubleMatrix1D( new double[]{8, 10} ) )
         );
@@ -172,22 +172,22 @@ public final class TestCComponents extends IBaseTest
     @Test
     public void heuristic()
     {
-        Assert.assertEquals(
+        Assertions.assertEquals(
             18D,
             EDistance.MANHATTAN.heuristic( new DenseDoubleMatrix1D( new double[]{0, 0} ), new DenseDoubleMatrix1D( new double[]{8, 10} ) )
         );
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
             18D,
             EDistance.EUCLIDEAN.heuristic( new DenseDoubleMatrix1D( new double[]{0, 0} ), new DenseDoubleMatrix1D( new double[]{8, 10} ) )
         );
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
             18D,
             EDistance.OCTILE.heuristic( new DenseDoubleMatrix1D( new double[]{0, 0} ), new DenseDoubleMatrix1D( new double[]{8, 10} ) )
         );
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
             18D,
             EDistance.OCTILE.heuristic( new DenseDoubleMatrix1D( new double[]{0, 0} ), new DenseDoubleMatrix1D( new double[]{8, 10} ) )
         );
