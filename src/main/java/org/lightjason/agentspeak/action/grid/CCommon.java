@@ -75,7 +75,7 @@ public final class CCommon
         final double l_first = DenseDoubleAlgebra.DEFAULT.norm2( p_first );
         final double l_second = DenseDoubleAlgebra.DEFAULT.norm2( p_second );
 
-        return ( l_first == 0 ) || ( l_second == 0 )
+        return l_first == 0 || l_second == 0
                ? new ImmutablePair<>( 0.0, false )
                : new ImmutablePair<>( Math.acos( DenseDoubleAlgebra.DEFAULT.mult( p_first, p_second ) / ( Math.sqrt( l_first ) * Math.sqrt( l_second ) ) ), true );
     }
